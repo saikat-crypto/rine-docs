@@ -1,59 +1,108 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { Search, Menu, X, ExternalLink } from 'lucide-react';
 import RineLogo from './RineLogo';
+import SearchModal from './SearchModal';
 
-export default function DocsNavbar() {
+interface DocsNavbarProps {
+  onToggleSidebar?: () => void;
+  isSidebarOpen?: boolean;
+}
+
+export default function DocsNavbar({ onToggleSidebar, isSidebarOpen }: DocsNavbarProps) {
+  const [searchOpen, setSearchOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-black/[0.08] bg-white/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 sm:px-8">
-        {/* Left: Brand */}
-        <div className="flex items-center gap-4">
-          <a href="https://rine.studio" className="inline-flex items-center gap-2" aria-label="Rine Studio">
-            <RineLogo className="w-6 h-6 text-black" color="#000000" />
-            <span className="text-xl font-normal tracking-tight text-black">Rine</span>
-          </a>
-          <span className="text-xs text-neutral-300 font-light">/</span>
-          <Link href="/" className="text-xs uppercase tracking-[0.16em] text-neutral-500 font-normal hover:text-black transition-colors">
-            Documentation
-          </Link>
-        </div>
+    <>
+      <header className="sticky top-0 z-40 w-full border-b border-white/[0.08] bg-[#141313]/90 backdrop-blur-md">
+        <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6">
+          {/* Left: Brand + Breadcrumb */}
+          <div className="flex items-center gap-3">
+            {onToggleSidebar && (
+              <button
+                onClick={onToggleSidebar}
+                className="md:hidden text-white/60 hover:text-white p-1 rounded transition-colors"
+                aria-label="Toggle navigation"
+              >
+                {isSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            )}
 
-        {/* Right: Quick Links */}
-        <div className="flex items-center gap-4 text-xs font-normal">
-          <a
-            href="https://rine.studio"
-            className="hidden sm:inline-block text-neutral-500 hover:text-black transition-colors"
-          >
-            Studio &rarr;
-          </a>
-          <a
-            href="https://platform.rine.studio"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:inline-block text-neutral-500 hover:text-black transition-colors"
-          >
-            Platform &rarr;
-          </a>
-          <a
-            href="https://github.com/saikat-crypto"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-neutral-500 hover:text-black transition-colors"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://platform.rine.studio"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-3.5 py-1.5 rounded border border-black bg-black text-white hover:bg-neutral-800 transition-colors text-xs font-normal"
-          >
-            Start Building
-          </a>
+            <a
+              href="https://rine.studio"
+              className="inline-flex items-center gap-2 group"
+              aria-label="Rine Studio"
+            >
+              <RineLogo className="w-5 h-5 text-white transition-transform group-hover:scale-105" color="#ffffff" />
+              <span className="text-sm font-semibold tracking-widest text-white uppercase">
+                Rine
+              </span>
+            </a>
+            <span className="text-white/20 font-light">/</span>
+            <Link
+              href="/"
+              className="text-xs uppercase tracking-[0.18em] text-white/50 hover:text-white transition-colors font-medium"
+            >
+              Docs
+            </Link>
+          </div>
+
+          {/* Center: Search Trigger */}
+          <div className="flex-1 max-w-sm mx-4 hidden sm:block">
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="w-full flex items-center justify-between px-3 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] text-white/40 hover:text-white hover:border-white/20 hover:bg-white/[0.06] transition-all text-xs"
+            >
+              <span className="flex items-center gap-2">
+                <Search className="w-3.5 h-3.5" />
+                <span className="font-light">Search docs...</span>
+              </span>
+              <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-white/40">
+                ⌘K
+              </kbd>
+            </button>
+          </div>
+
+          {/* Right: Utility Navigation */}
+          <div className="flex items-center gap-3 sm:gap-4 text-xs font-normal">
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="sm:hidden text-white/60 hover:text-white p-1.5 rounded"
+              aria-label="Search"
+            >
+              <Search className="w-4 h-4" />
+            </button>
+
+            <Link
+              href="/api-reference"
+              className="hidden lg:inline-flex items-center text-white/60 hover:text-white transition-colors"
+            >
+              API Reference
+            </Link>
+
+            <a
+              href="https://rine.studio"
+              className="hidden md:inline-flex items-center gap-1 text-white/60 hover:text-white transition-colors"
+            >
+              Back to Rine
+            </a>
+
+            <a
+              href="https://platform.rine.studio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md border border-white/25 text-white text-xs font-medium px-4 py-1.5 rounded-full hover:bg-white/20 transition-all duration-300 tracking-wide shadow-sm"
+            >
+              <span>Open Platform</span>
+              <ExternalLink className="w-3 h-3 text-white/70" />
+            </a>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+    </>
   );
 }
