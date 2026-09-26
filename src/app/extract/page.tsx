@@ -78,7 +78,7 @@ export default function ExtractPage() {
         <CodeBlock
           language="bash"
           filename="EXTRACT_SAMPLE.SH"
-          code={`curl -X POST "https://lavinci.rine.studio/extract" \\
+          code={`curl -X POST "https://platform.rine.studio/api/v1/extract" \\
      -F "file=@sample_floorplan.dwg"`}
         />
 
@@ -239,3 +239,4 @@ export default function ExtractPage() {
     </DocsLayout>
   );
 }
+

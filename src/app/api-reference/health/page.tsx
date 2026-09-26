@@ -81,7 +81,7 @@ export default function ApiReferenceHealthPage() {
         <CodeBlock
           language="bash"
           filename="HEALTH_CHECK.SH"
-          code={`curl -X GET "https://lavinci.rine.studio/health"`}
+          code={`curl -X GET "https://platform.rine.studio/api/v1/health"`}
         />
 
         <h3 id="verified-response">Verified Response</h3>
@@ -126,3 +126,4 @@ export default function ApiReferenceHealthPage() {
     </DocsLayout>
   );
 }
+

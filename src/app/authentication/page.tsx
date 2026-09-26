@@ -51,7 +51,7 @@ export default function AuthenticationPage() {
               </tr>
               <tr>
                 <td className="font-medium text-white">Direct Engine</td>
-                <td><code>https://lavinci.rine.studio</code></td>
+                <td><code>https://platform.rine.studio/api/v1</code></td>
                 <td>Direct endpoint execution / Developer Preview</td>
                 <td>High-performance evaluation and benchmarking</td>
               </tr>
@@ -140,3 +140,4 @@ export default function AuthenticationPage() {
     </DocsLayout>
   );
 }
+

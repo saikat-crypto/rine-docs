@@ -49,7 +49,7 @@ export default function QuickstartPage() {
 
         <Callout type="info" title="Verification & Gateway Status">
           <p>
-            The hosted engine backend operates at <code>https://lavinci.rine.studio</code> for direct CAD processing. When calling via the authenticated platform gateway (<code>https://platform.rine.studio/api/v1</code>), requests require a valid Bearer API key generated from the <a href="https://platform.rine.studio" target="_blank" rel="noopener noreferrer" className="underline text-white">Developer Console</a>.
+            The authenticated platform gateway operates at <code>https://platform.rine.studio/api/v1</code> for CAD processing. Requests require a valid Bearer API key generated from the <a href="https://platform.rine.studio" target="_blank" rel="noopener noreferrer" className="underline text-white">Developer Console</a>.
           </p>
         </Callout>
 
@@ -127,8 +127,8 @@ export default function QuickstartPage() {
         <CodeBlock
           language="bash"
           filename="EXTRACT_DWG.SH"
-          code={`# Direct execution against https://lavinci.rine.studio
-curl -X POST "https://lavinci.rine.studio/extract" \\
+          code={`# Direct execution against https://platform.rine.studio/api/v1
+curl -X POST "https://platform.rine.studio/api/v1/extract" \\
      -F "file=@drawing.dwg"`}
         />
 
@@ -149,7 +149,7 @@ curl -X POST "https://platform.rine.studio/api/v1/extract" \\
           language="bash"
           filename="CONVERT_SVG.SH"
           code={`# Convert CAD input to SVG vector output
-curl -X POST "https://lavinci.rine.studio/convert" \\
+curl -X POST "https://platform.rine.studio/api/v1/convert" \\
      -F "target_format=svg" \\
      -F "preset=web-interactive-light" \\
      -F "file=@drawing.dxf" \\
@@ -313,3 +313,7 @@ curl -X POST "https://lavinci.rine.studio/convert" \\
     </DocsLayout>
   );
 }
+
+
+
+

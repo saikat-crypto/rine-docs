@@ -90,7 +90,7 @@ export default function ApiReferenceConvertPage() {
         <CodeBlock
           language="bash"
           filename="CONVERT_PDF.SH"
-          code={`curl -X POST "https://lavinci.rine.studio/convert" \\
+          code={`curl -X POST "https://platform.rine.studio/api/v1/convert" \\
      -F "target_format=pdf" \\
      -F "preset=monochrome-arch" \\
      -F "file=@drawing.dwg" \\
@@ -102,7 +102,7 @@ export default function ApiReferenceConvertPage() {
         <CodeBlock
           language="bash"
           filename="CONVERT_SVG.SH"
-          code={`curl -X POST "https://lavinci.rine.studio/convert" \\
+          code={`curl -X POST "https://platform.rine.studio/api/v1/convert" \\
      -F "target_format=svg" \\
      -F "preset=web-interactive-light" \\
      -F "file=@drawing.dxf" \\
@@ -112,3 +112,4 @@ export default function ApiReferenceConvertPage() {
     </DocsLayout>
   );
 }
+

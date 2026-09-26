@@ -46,7 +46,7 @@ export default function ChangelogPage() {
             </div>
 
             <p className="text-xs text-white/80 leading-relaxed">
-              Synchronized production OpenAPI 3.1.0 specifications at <code>https://lavinci.rine.studio/openapi.json</code>. Deployed interactive Swagger UI at <code>https://lavinci.rine.studio/docs</code>. Established <code>POST /convert</code> multi-format matrix supporting PDF, SVG, PNG, JPEG, WebP, and DXF.
+              Synchronized production OpenAPI 3.1.0 specifications at <code>https://platform.rine.studio/api/v1/openapi.json</code>. Deployed interactive Swagger UI at <code>https://platform.rine.studio/api/v1/docs</code>. Established <code>POST /convert</code> multi-format matrix supporting PDF, SVG, PNG, JPEG, WebP, and DXF.
             </p>
 
             <div className="text-xs space-y-1.5 pt-2 border-t border-white/[0.06]">
@@ -115,3 +115,4 @@ export default function ChangelogPage() {
     </DocsLayout>
   );
 }
+

@@ -136,7 +136,7 @@ export default function ConvertPage() {
         <CodeBlock
           language="bash"
           filename="CONVERT_PDF.SH"
-          code={`curl -X POST "https://lavinci.rine.studio/convert" \\
+          code={`curl -X POST "https://platform.rine.studio/api/v1/convert" \\
      -F "target_format=pdf" \\
      -F "preset=monochrome-arch" \\
      -F "file=@drawing.dwg" \\
@@ -148,7 +148,7 @@ export default function ConvertPage() {
         <CodeBlock
           language="bash"
           filename="CONVERT_SVG.SH"
-          code={`curl -X POST "https://lavinci.rine.studio/convert" \\
+          code={`curl -X POST "https://platform.rine.studio/api/v1/convert" \\
      -F "target_format=svg" \\
      -F "preset=web-interactive-light" \\
      -F "file=@drawing.dxf" \\
@@ -160,7 +160,7 @@ export default function ConvertPage() {
         <CodeBlock
           language="bash"
           filename="CONVERT_PNG.SH"
-          code={`curl -X POST "https://lavinci.rine.studio/convert" \\
+          code={`curl -X POST "https://platform.rine.studio/api/v1/convert" \\
      -F "target_format=png" \\
      -F "preset=web-preview" \\
      -F "options_json={\\"dpi\\": 300, \\"background_color\\": \\"#FFFFFF\\"}" \\
@@ -177,7 +177,7 @@ export default function ConvertPage() {
         <CodeBlock
           language="bash"
           filename="CONVERT_FROM_IR.SH"
-          code={`curl -X POST "https://lavinci.rine.studio/convert" \\
+          code={`curl -X POST "https://platform.rine.studio/api/v1/convert" \\
      -F "target_format=pdf" \\
      -F "preset=presentation-color" \\
      -F "ir_json=<cad_ir.json" \\
@@ -187,3 +187,4 @@ export default function ConvertPage() {
     </DocsLayout>
   );
 }
+

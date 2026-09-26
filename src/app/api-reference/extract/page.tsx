@@ -97,10 +97,11 @@ export default function ApiReferenceExtractPage() {
         <CodeBlock
           language="bash"
           filename="EXTRACT_CLI.SH"
-          code={`curl -X POST "https://lavinci.rine.studio/extract" \\
+          code={`curl -X POST "https://platform.rine.studio/api/v1/extract" \\
      -F "file=@floorplan.dwg"`}
         />
       </div>
     </DocsLayout>
   );
 }
+

@@ -29,7 +29,7 @@ export default function ServiceStatusPage() {
     setLoading(true);
     setFetchError(null);
     try {
-      const res = await fetch('https://lavinci.rine.studio/health', {
+      const res = await fetch('https://platform.rine.studio/api/v1/health', {
         cache: 'no-store',
       });
       if (!res.ok) throw new Error(`HTTP error ${res.status}`);
@@ -94,7 +94,7 @@ export default function ServiceStatusPage() {
                   </span>
                 </div>
                 <div className="text-[11px] font-mono text-white/40">
-                  Base Endpoint: https://lavinci.rine.studio
+                  Base Endpoint: https://platform.rine.studio/api/v1
                 </div>
               </div>
             </div>
@@ -175,3 +175,4 @@ export default function ServiceStatusPage() {
     </DocsLayout>
   );
 }
+

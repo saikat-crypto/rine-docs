@@ -136,11 +136,11 @@ export default function ApiReferenceLandingPage() {
               Interactive OpenAPI 3.1.0 Playground
             </h3>
             <p className="text-xs text-white/60 font-light">
-              Inspect the canonical machine-readable schema definition running live at <code>https://lavinci.rine.studio/docs</code>.
+              Inspect the canonical machine-readable schema definition running live at <code>https://platform.rine.studio/api/v1/docs</code>.
             </p>
           </div>
           <a
-            href="https://lavinci.rine.studio/docs"
+            href="https://platform.rine.studio/api/v1/docs"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-white text-xs font-medium transition-colors shrink-0 font-mono"
@@ -177,3 +177,4 @@ export default function ApiReferenceLandingPage() {
     </DocsLayout>
   );
 }
+
