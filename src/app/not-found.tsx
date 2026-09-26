@@ -1,114 +1,78 @@
+import React from 'react';
 import Link from 'next/link';
 import RineLogo from '@/components/RineLogo';
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#141313] text-white flex flex-col justify-between p-6 sm:p-12 font-sans selection:bg-white/20 selection:text-white">
-      {/* Top Header */}
+      {/* ── HEADER ── */}
       <header className="flex items-center justify-between w-full max-w-5xl mx-auto">
-        <Link href="/" className="flex items-center gap-2.5">
-          <RineLogo className="w-5 h-5 text-white" />
-          <span className="text-xs font-mono font-medium tracking-wider uppercase text-white/90">
-            Rine Docs
+        <a href="https://rine.studio" className="flex items-center gap-2.5 group">
+          <RineLogo className="w-5 h-5 text-white opacity-90 group-hover:opacity-100 transition-opacity" color="#ffffff" />
+          <span className="text-sm font-semibold tracking-widest text-white uppercase">
+            Rine
           </span>
-        </Link>
-        <div className="flex items-center gap-4 text-xs font-mono tracking-wider text-white/60">
+          <span className="text-white/20 font-light text-xs">/</span>
+          <span className="text-xs uppercase tracking-[0.18em] text-white/50 font-medium">
+            Docs
+          </span>
+        </a>
+
+        <div className="flex items-center gap-4 text-xs font-mono tracking-wider">
           <a
             href="https://rine.studio"
-            className="hover:text-white transition-colors"
+            className="text-white/60 hover:text-white transition-colors"
           >
             ← Rine.studio
           </a>
           <a
             href="https://platform.rine.studio"
-            className="hover:text-white transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3.5 py-1.5 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-white transition-all uppercase text-[11px]"
           >
-            Platform →
+            Platform Console &rarr;
           </a>
         </div>
       </header>
 
-      {/* Center 404 block */}
-      <main className="max-w-2xl mx-auto text-center py-20 px-4 space-y-6">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 text-[11px] font-mono tracking-widest uppercase text-white/60">
-          <span>Error 404</span>
-          <span className="w-1 h-1 rounded-full bg-white/40" />
-          <span>Documentation Route Not Found</span>
+      {/* ── MAIN CONTENT ── */}
+      <main className="max-w-2xl mx-auto text-center py-16 sm:py-24 px-4 space-y-6">
+        <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.04] text-[11px] font-mono tracking-wider uppercase text-white/80">
+          <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+          <span>Documentation is in progress of preparation</span>
         </div>
 
         <h1 className="text-3xl sm:text-5xl font-light tracking-tight text-white leading-tight">
-          This documentation page does not exist.
+          Documentation is currently being prepared.
         </h1>
 
         <p className="text-sm sm:text-base text-white/70 font-light leading-relaxed max-w-md mx-auto">
-          The requested endpoint, guide, or schema topic could not be found. Explore our primary documentation guides below.
+          Comprehensive API documentation, schema references, and developer guides are currently being finalized alongside our anticipated product launches. Complete developer guides will be published soon.
         </p>
 
-        {/* Quick Links Matrix */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left max-w-lg mx-auto pt-4">
-          <Link
-            href="/quickstart"
-            className="p-4 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 transition-all group"
-          >
-            <div className="text-xs font-mono text-emerald-400 group-hover:text-emerald-300">
-              01 / Quickstart →
-            </div>
-            <div className="text-xs text-white/60 font-light mt-1">
-              From CAD file to first verified result
-            </div>
-          </Link>
-
-          <Link
-            href="/supported-formats"
-            className="p-4 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 transition-all group"
-          >
-            <div className="text-xs font-mono text-emerald-400 group-hover:text-emerald-300">
-              02 / Formats →
-            </div>
-            <div className="text-xs text-white/60 font-light mt-1">
-              DWG, DXF, DWT inputs and output matrix
-            </div>
-          </Link>
-
-          <Link
-            href="/api-reference"
-            className="p-4 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 transition-all group"
-          >
-            <div className="text-xs font-mono text-emerald-400 group-hover:text-emerald-300">
-              03 / API Reference →
-            </div>
-            <div className="text-xs text-white/60 font-light mt-1">
-              /health, /extract, and /convert operations
-            </div>
-          </Link>
-
-          <Link
-            href="/known-limitations"
-            className="p-4 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 transition-all group"
-          >
-            <div className="text-xs font-mono text-emerald-400 group-hover:text-emerald-300">
-              04 / Limitations →
-            </div>
-            <div className="text-xs text-white/60 font-light mt-1">
-              Active investigations and preview boundaries
-            </div>
-          </Link>
-        </div>
-
-        <div className="pt-6">
+        <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
           <Link
             href="/"
-            className="inline-flex items-center justify-center bg-white/10 border border-white/20 text-white text-xs font-medium px-6 py-2.5 rounded-full hover:bg-white/20 transition-all duration-300 font-mono tracking-wide"
+            className="bg-white/10 backdrop-blur-md border border-white/25 text-white text-xs font-medium px-6 py-2.5 rounded-full hover:bg-white/20 transition-all duration-300 font-mono tracking-wide"
           >
-            ← Return to Documentation Home
+            ← Return to Docs Home
           </Link>
+          <a
+            href="https://platform.rine.studio"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white/5 border border-white/15 text-white/80 text-xs font-medium px-6 py-2.5 rounded-full hover:bg-white/10 hover:text-white transition-all duration-300 font-mono tracking-wide"
+          >
+            Open Platform Console &rarr;
+          </a>
         </div>
       </main>
 
-      {/* Footer */}
+      {/* ── FOOTER ── */}
       <footer className="w-full max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-light text-white/40 pt-8 border-t border-white/10">
-        <span>© 2026 Rine Studio. Developer Preview Documentation.</span>
-        <div className="flex items-center gap-4">
+        <span>© 2026 Rine Studio. Engineering-file infrastructure.</span>
+        <div className="flex items-center gap-5">
           <a
             href="mailto:hello@rine.studio"
             className="hover:text-white transition-colors"
@@ -119,7 +83,7 @@ export default function NotFound() {
             href="https://platform.rine.studio"
             className="hover:text-white transition-colors"
           >
-            Open Platform
+            Platform Console
           </a>
         </div>
       </footer>
