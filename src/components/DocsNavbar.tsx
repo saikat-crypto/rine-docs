@@ -23,8 +23,9 @@ export default function DocsNavbar({ onToggleSidebar, isSidebarOpen }: DocsNavba
             {onToggleSidebar && (
               <button
                 onClick={onToggleSidebar}
-                className="md:hidden text-white/60 hover:text-white p-1 rounded transition-colors"
-                aria-label="Toggle navigation"
+                className="md:hidden text-white/70 hover:text-white w-10 h-10 flex items-center justify-center -ml-2 rounded-lg transition-colors focus:outline-none"
+                aria-label="Toggle navigation menu"
+                aria-expanded={isSidebarOpen}
               >
                 {isSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
@@ -69,8 +70,8 @@ export default function DocsNavbar({ onToggleSidebar, isSidebarOpen }: DocsNavba
           <div className="flex items-center gap-3 sm:gap-4 text-xs font-normal">
             <button
               onClick={() => setSearchOpen(true)}
-              className="sm:hidden text-white/60 hover:text-white p-1.5 rounded"
-              aria-label="Search"
+              className="sm:hidden text-white/70 hover:text-white w-10 h-10 flex items-center justify-center rounded-lg transition-colors focus:outline-none"
+              aria-label="Search documentation"
             >
               <Search className="w-4 h-4" />
             </button>
