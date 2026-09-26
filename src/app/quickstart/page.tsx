@@ -43,13 +43,13 @@ export default function QuickstartPage() {
         <ul>
           <li>a supported DWG, DXF, or DWT file;</li>
           <li>access to the hosted La Vinci Developer Preview;</li>
-          <li>the verified authentication details for your account;</li>
+          <li>an API key (<code>rine_live_...</code>) generated from the <a href="https://platform.rine.studio" target="_blank" rel="noopener noreferrer" className="underline text-white">Developer Console</a>;</li>
           <li>a target operation and, for conversion, a supported output format.</li>
         </ul>
 
         <Callout type="info" title="Verification & Gateway Status">
           <p>
-            The authenticated platform gateway operates at <code>https://platform.rine.studio/api/v1</code> for CAD processing. Requests require a valid Bearer API key generated from the <a href="https://platform.rine.studio" target="_blank" rel="noopener noreferrer" className="underline text-white">Developer Console</a>.
+            The authenticated platform gateway operates at <code>https://platform.rine.studio/api/v1</code> for CAD processing. All extraction and conversion requests require an <code>Authorization: Bearer rine_live_...</code> header.
           </p>
         </Callout>
 
@@ -89,16 +89,16 @@ export default function QuickstartPage() {
                 <td>Current engine-health information</td>
               </tr>
               <tr>
-                <td>Inspect the live implementation reference</td>
-                <td><code>/docs</code></td>
-                <td>Swagger API documentation</td>
+                <td>Inspect operations and schemas</td>
+                <td><Link href="/api-reference" className="text-white underline"><code>/api-reference</code></Link></td>
+                <td>Full API reference and schema definitions</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <p className="text-xs text-white/50">
-          HTTP methods, full paths, and payload shapes are verified against the live OpenAPI definition.
+          HTTP methods, full paths, and payload shapes are verified against the deployed platform gateway.
         </p>
 
         <h2 id="2-check-your-file-and-target-format">2. Check your file and target format</h2>
@@ -119,24 +119,14 @@ export default function QuickstartPage() {
         <h2 id="3-send-the-request">3. Send the request</h2>
 
         <p>
-          Below are verified, executed requests against the hosted Developer Preview.
+          Below are verified, executed requests against the hosted Developer Preview gateway.
         </p>
 
-        <h3 id="extract-request">Extract Request (Direct Engine)</h3>
+        <h3 id="extract-request">Extract Request (CAD to LAVINCI_CAD_IR_V3)</h3>
 
         <CodeBlock
           language="bash"
           filename="EXTRACT_DWG.SH"
-          code={`# Direct execution against https://platform.rine.studio/api/v1
-curl -X POST "https://platform.rine.studio/api/v1/extract" \\
-     -F "file=@drawing.dwg"`}
-        />
-
-        <h3 id="extract-platform-request">Extract Request (Platform Gateway)</h3>
-
-        <CodeBlock
-          language="bash"
-          filename="EXTRACT_GATEWAY.SH"
           code={`# Authenticated platform execution via Bearer API Key
 curl -X POST "https://platform.rine.studio/api/v1/extract" \\
      -H "Authorization: Bearer rine_live_your_api_key_here" \\
@@ -150,6 +140,7 @@ curl -X POST "https://platform.rine.studio/api/v1/extract" \\
           filename="CONVERT_SVG.SH"
           code={`# Convert CAD input to SVG vector output
 curl -X POST "https://platform.rine.studio/api/v1/convert" \\
+     -H "Authorization: Bearer rine_live_your_api_key_here" \\
      -F "target_format=svg" \\
      -F "preset=web-interactive-light" \\
      -F "file=@drawing.dxf" \\
@@ -313,7 +304,3 @@ curl -X POST "https://platform.rine.studio/api/v1/convert" \\
     </DocsLayout>
   );
 }
-
-
-
-

@@ -1,6 +1,7 @@
 import React from 'react';
 import DocsLayout from '@/components/DocsLayout';
 import EndpointCard from '@/components/EndpointCard';
+import Callout from '@/components/Callout';
 import CodeBlock from '@/components/CodeBlock';
 import Badge from '@/components/Badge';
 
@@ -28,13 +29,19 @@ export default function ApiReferenceConvertPage() {
           method="POST"
           path="/convert"
           purpose="Accepts a CAD file upload or raw IR JSON string, returning a binary stream of the compiled output."
-          authentication="None (Direct) / Bearer Token (Gateway)"
+          authentication="Bearer API Key (rine_live_...)"
           acceptedMedia="multipart/form-data"
           responseMedia="application/pdf | image/svg+xml | image/png | image/jpeg | image/webp | application/dxf"
           statusBadge="preview"
           badgeLabel="Developer Preview"
           limitationsHref="/known-limitations"
         />
+
+        <Callout type="warning" title="30-Second API Gateway Hard Timeout">
+          <p className="font-medium text-amber-200">
+            AWS API Gateway HTTP API v2 imposes a hard 30-second integration timeout. High-resolution rasterization on massive 50MB+ drawings can take 15–20 seconds under normal load. If execution exceeds 30 seconds, API Gateway will sever the connection with HTTP 504 Gateway Timeout. Ensure synchronous conversions complete within this limit.
+          </p>
+        </Callout>
 
         <h2 id="request-parameters">Request parameters</h2>
 
@@ -91,6 +98,7 @@ export default function ApiReferenceConvertPage() {
           language="bash"
           filename="CONVERT_PDF.SH"
           code={`curl -X POST "https://platform.rine.studio/api/v1/convert" \\
+     -H "Authorization: Bearer rine_live_your_api_key_here" \\
      -F "target_format=pdf" \\
      -F "preset=monochrome-arch" \\
      -F "file=@drawing.dwg" \\
@@ -103,6 +111,7 @@ export default function ApiReferenceConvertPage() {
           language="bash"
           filename="CONVERT_SVG.SH"
           code={`curl -X POST "https://platform.rine.studio/api/v1/convert" \\
+     -H "Authorization: Bearer rine_live_your_api_key_here" \\
      -F "target_format=svg" \\
      -F "preset=web-interactive-light" \\
      -F "file=@drawing.dxf" \\
@@ -112,4 +121,3 @@ export default function ApiReferenceConvertPage() {
     </DocsLayout>
   );
 }
-

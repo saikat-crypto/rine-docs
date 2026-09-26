@@ -29,7 +29,7 @@ export default function ApiReferenceExtractPage() {
           method="POST"
           path="/extract"
           purpose="Upload a CAD file and receive the full LAVINCI_CAD_IR_V3 JSON payload and extraction diagnostics."
-          authentication="None (Direct) / Bearer Token (Gateway)"
+          authentication="Bearer API Key (rine_live_...)"
           acceptedMedia="multipart/form-data"
           responseMedia="application/json"
           statusBadge="preview"
@@ -56,12 +56,6 @@ export default function ApiReferenceExtractPage() {
                 <td>Yes</td>
                 <td>Raw binary CAD file (<code>.dwg</code>, <code>.dxf</code>, or <code>.dwt</code>).</td>
               </tr>
-              <tr>
-                <td className="font-mono text-white">dwg2dxf_path</td>
-                <td className="font-mono text-emerald-400">string</td>
-                <td>No</td>
-                <td>Optional path to custom dwg2dxf binary (auto-detected on server).</td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -84,6 +78,11 @@ export default function ApiReferenceExtractPage() {
                 <td>Successful extraction returning IR payload and telemetry.</td>
               </tr>
               <tr>
+                <td className="font-mono text-rose-400">401 Unauthorized</td>
+                <td><code>{`{"error": "Missing API key. Pass it as: Authorization: Bearer rine_live_..."}`}</code></td>
+                <td>Missing or invalid Bearer token in the <code>Authorization</code> header.</td>
+              </tr>
+              <tr>
                 <td className="font-mono text-rose-400">422 Unprocessable</td>
                 <td><code>HTTPValidationError</code></td>
                 <td>Validation error or unparseable CAD structure.</td>
@@ -98,10 +97,10 @@ export default function ApiReferenceExtractPage() {
           language="bash"
           filename="EXTRACT_CLI.SH"
           code={`curl -X POST "https://platform.rine.studio/api/v1/extract" \\
+     -H "Authorization: Bearer rine_live_your_api_key_here" \\
      -F "file=@floorplan.dwg"`}
         />
       </div>
     </DocsLayout>
   );
 }
-

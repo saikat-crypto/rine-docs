@@ -44,7 +44,7 @@ export default function ConvertPage() {
           method="POST"
           path="/convert"
           purpose="Accepts a CAD file (.dwg, .dxf, .dwt) or pre-extracted IR JSON, compiling it directly into a chosen target format."
-          authentication="None (Direct Engine) / Bearer Token (Platform Gateway)"
+          authentication="Bearer API Key (rine_live_...)"
           acceptedMedia="multipart/form-data"
           responseMedia="application/pdf | image/svg+xml | image/png | image/jpeg | image/webp | application/dxf"
           statusBadge="preview"
@@ -53,7 +53,7 @@ export default function ConvertPage() {
           referenceHref="/api-reference/convert"
         />
 
-        <h2 id="fidelity">Fidelity</h2>
+        <h2 id="fidelity">Fidelity &amp; operational limits</h2>
 
         <p>
           Conversion completion means that the service produced an output. It does not mean that the output is identical to the source in every respect.
@@ -70,7 +70,13 @@ export default function ConvertPage() {
 
         <Callout type="investigation" title="Active Investigation">
           <p className="font-medium text-orange-200">
-            Some conversion outputs may contain fidelity differences, including missing linework in certain cases. The affected entity types, file characteristics, and output paths are still being characterized. This notice should be updated when the scope and remediation status are confirmed.
+            Some conversion outputs may contain fidelity differences, including missing linework in certain cases. The affected entity types, file characteristics, and output paths are still being characterized. See <Link href="/known-limitations" className="underline text-white">Known Limitations</Link> before using conversion results in a critical workflow.
+          </p>
+        </Callout>
+
+        <Callout type="warning" title="30-Second API Gateway Hard Timeout">
+          <p className="font-medium text-amber-200">
+            AWS API Gateway HTTP API v2 imposes a hard 30-second integration timeout on all synchronous HTTP calls. Complex conversions (such as 600 DPI <code>ai-vision</code> rasterization on large 50MB+ drawings with thousands of entities) typically take 15–20 seconds under normal load. If processing exceeds 30 seconds, API Gateway terminates the connection with an HTTP 504 Gateway Timeout. For large models, choose vector presets (<code>monochrome-arch</code>, <code>web-interactive-light</code>) or supply pre-extracted IR payloads via <code>ir_json</code> to bypass binary decoding.
           </p>
         </Callout>
 
@@ -137,6 +143,7 @@ export default function ConvertPage() {
           language="bash"
           filename="CONVERT_PDF.SH"
           code={`curl -X POST "https://platform.rine.studio/api/v1/convert" \\
+     -H "Authorization: Bearer rine_live_your_api_key_here" \\
      -F "target_format=pdf" \\
      -F "preset=monochrome-arch" \\
      -F "file=@drawing.dwg" \\
@@ -149,6 +156,7 @@ export default function ConvertPage() {
           language="bash"
           filename="CONVERT_SVG.SH"
           code={`curl -X POST "https://platform.rine.studio/api/v1/convert" \\
+     -H "Authorization: Bearer rine_live_your_api_key_here" \\
      -F "target_format=svg" \\
      -F "preset=web-interactive-light" \\
      -F "file=@drawing.dxf" \\
@@ -161,6 +169,7 @@ export default function ConvertPage() {
           language="bash"
           filename="CONVERT_PNG.SH"
           code={`curl -X POST "https://platform.rine.studio/api/v1/convert" \\
+     -H "Authorization: Bearer rine_live_your_api_key_here" \\
      -F "target_format=png" \\
      -F "preset=web-preview" \\
      -F "options_json={\\"dpi\\": 300, \\"background_color\\": \\"#FFFFFF\\"}" \\
@@ -178,6 +187,7 @@ export default function ConvertPage() {
           language="bash"
           filename="CONVERT_FROM_IR.SH"
           code={`curl -X POST "https://platform.rine.studio/api/v1/convert" \\
+     -H "Authorization: Bearer rine_live_your_api_key_here" \\
      -F "target_format=pdf" \\
      -F "preset=presentation-color" \\
      -F "ir_json=<cad_ir.json" \\
@@ -187,4 +197,3 @@ export default function ConvertPage() {
     </DocsLayout>
   );
 }
-

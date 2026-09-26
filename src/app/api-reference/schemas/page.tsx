@@ -20,7 +20,7 @@ export default function ApiReferenceSchemasPage() {
         <h1 id="schemas">Schemas</h1>
 
         <p>
-          Canonical data schemas extracted directly from the live OpenAPI specification (<code>https://platform.rine.studio/api/v1/openapi.json</code>).
+          Canonical data schemas and TypeScript interface definitions for the La Vinci Developer Preview API models.
         </p>
 
         <h2 id="extractresponse">ExtractResponse</h2>
@@ -109,4 +109,3 @@ interface ValidationError {
     </DocsLayout>
   );
 }
-

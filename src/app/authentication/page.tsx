@@ -21,7 +21,7 @@ export default function AuthenticationPage() {
         <h1 id="authentication">Authentication</h1>
 
         <p>
-          La Vinci provides two access surfaces during the Developer Preview: the direct cloud engine for technical evaluation and the authenticated Developer Platform Gateway for production integration.
+          All requests to the La Vinci Developer Preview must be authenticated. The public API surface is unified at <code>https://platform.rine.studio/api/v1</code> and strictly requires an API key passed via the standard HTTP <code>Authorization</code> header.
         </p>
 
         <Callout type="warning" title="Keep credentials private">
@@ -30,7 +30,11 @@ export default function AuthenticationPage() {
           </p>
         </Callout>
 
-        <h2 id="access-surfaces">Access surfaces</h2>
+        <h2 id="unified-api-surface">Unified API surface</h2>
+
+        <p>
+          Requests must be sent directly to the Platform Gateway. The internal raw compute engine is private and rejects any external traffic that does not transit through the authenticated gateway.
+        </p>
 
         <div className="my-6 overflow-x-auto rounded-xl border border-white/10">
           <table className="docs-table !my-0">
@@ -39,7 +43,7 @@ export default function AuthenticationPage() {
                 <th>Surface</th>
                 <th>Base URL</th>
                 <th>Authentication Mechanism</th>
-                <th>Usage Boundary</th>
+                <th>Access Policy</th>
               </tr>
             </thead>
             <tbody>
@@ -47,13 +51,7 @@ export default function AuthenticationPage() {
                 <td className="font-medium text-white">Platform Gateway</td>
                 <td><code>https://platform.rine.studio/api/v1</code></td>
                 <td><code>Authorization: Bearer rine_live_...</code></td>
-                <td>Standard integration with telemetry and key tracking</td>
-              </tr>
-              <tr>
-                <td className="font-medium text-white">Direct Engine</td>
-                <td><code>https://platform.rine.studio/api/v1</code></td>
-                <td>Direct endpoint execution / Developer Preview</td>
-                <td>High-performance evaluation and benchmarking</td>
+                <td>Strictly enforced. Missing or invalid keys return <code>401 Unauthorized</code>.</td>
               </tr>
             </tbody>
           </table>
@@ -65,7 +63,7 @@ export default function AuthenticationPage() {
 
         <ol>
           <li>Sign in to your account at <a href="https://platform.rine.studio" target="_blank" rel="noopener noreferrer" className="underline text-white">platform.rine.studio</a>.</li>
-          <li>Navigate to <strong>API Keys</strong> in the developer console.</li>
+          <li>Navigate to <strong>API Keys</strong> in the developer console sidebar.</li>
           <li>Click <strong>Create New Key</strong> to generate a unique API key with prefix <code>rine_live_</code>.</li>
           <li>Copy and store the raw secret immediately. The secret hash is stored securely in DynamoDB and cannot be recovered if lost.</li>
         </ol>
@@ -140,4 +138,3 @@ export default function AuthenticationPage() {
     </DocsLayout>
   );
 }
-

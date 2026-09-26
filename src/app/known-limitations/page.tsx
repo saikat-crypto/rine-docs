@@ -28,6 +28,33 @@ export default function KnownLimitationsPage() {
           This page records limitations that can affect integration decisions or output interpretation. It does not imply that every file is affected.
         </p>
 
+        <h2 id="gateway-timeout">30-second API gateway hard timeout</h2>
+
+        <div className="my-5 p-5 rounded-xl border border-amber-500/20 bg-amber-500/[0.03] space-y-2 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-white/70">
+            <div>
+              <strong className="text-white">Status:</strong>{' '}
+              <Badge variant="known-limitation">Architectural limit</Badge>
+            </div>
+            <div>
+              <strong className="text-white">Last updated:</strong>{' '}
+              <span className="font-mono text-white/80">2026-09-26</span>
+            </div>
+            <div className="sm:col-span-2">
+              <strong className="text-white">Scope:</strong>{' '}
+              <span>All synchronous HTTP API Gateway calls (<code>/extract</code>, <code>/convert</code>)</span>
+            </div>
+            <div className="sm:col-span-2">
+              <strong className="text-white">Possible effect:</strong>{' '}
+              <span>AWS API Gateway HTTP API v2 imposes a hard 30-second integration timeout. High-resolution rasterization (such as 600 DPI <code>ai-vision</code> on massive 50MB+ drawings with tens of thousands of entities) takes 15–20 seconds under normal load. If end-to-end processing exceeds 30 seconds, API Gateway severs the connection with an <code>HTTP 504 Gateway Timeout</code>.</span>
+            </div>
+            <div className="sm:col-span-2">
+              <strong className="text-white">Mitigation:</strong>{' '}
+              <span>For massive CAD files, avoid heavy rasterization overrides. Prefer vector formats (<code>pdf</code>, <code>svg</code>) or upload pre-extracted <code>ir_json</code> payloads to eliminate the initial CAD binary decoding phase.</span>
+            </div>
+          </div>
+        </div>
+
         <h2 id="conversion-fidelity-differences">Conversion fidelity differences</h2>
 
         <div className="my-5 p-5 rounded-xl border border-orange-500/20 bg-orange-500/[0.03] space-y-2 text-xs">
@@ -54,10 +81,6 @@ export default function KnownLimitationsPage() {
             </div>
           </div>
         </div>
-
-        <p className="text-xs text-white/60">
-          Do not name affected input formats, output formats, CAD entities, or engine stages until reproduction testing establishes them.
-        </p>
 
         <h2 id="universal-fidelity">Universal fidelity</h2>
 

@@ -41,17 +41,17 @@ export default function ChangelogPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-white/70">
               <div><strong>Type:</strong> Added / Synchronized</div>
-              <div><strong>Affected:</strong> <code>/extract</code>, <code>/convert</code>, <code>/health</code>, <code>/docs</code></div>
+              <div><strong>Affected:</strong> <code>/extract</code>, <code>/convert</code>, <code>/health</code></div>
               <div className="sm:col-span-2"><strong>Status:</strong> Developer Preview</div>
             </div>
 
             <p className="text-xs text-white/80 leading-relaxed">
-              Synchronized production OpenAPI 3.1.0 specifications at <code>https://platform.rine.studio/api/v1/openapi.json</code>. Deployed interactive Swagger UI at <code>https://platform.rine.studio/api/v1/docs</code>. Established <code>POST /convert</code> multi-format matrix supporting PDF, SVG, PNG, JPEG, WebP, and DXF.
+              Published comprehensive OpenAPI 3.1.0 schema definitions in API Reference. Deployed interactive API testing in the Platform Console Playground. Established <code>POST /convert</code> multi-format matrix supporting PDF, SVG, PNG, JPEG, WebP, and DXF with Bearer token authentication.
             </p>
 
             <div className="text-xs space-y-1.5 pt-2 border-t border-white/[0.06]">
-              <div><strong>Developer action:</strong> None required. Dual-input mode accepts CAD binary files or raw <code>ir_json</code> payloads.</div>
-              <div><strong>Verification:</strong> Verified via direct curl execution against live AWS Lambda endpoints.</div>
+              <div><strong>Developer action:</strong> Include <code>Authorization: Bearer rine_live_...</code> in all gateway API calls. Dual-input mode accepts CAD binary files or raw <code>ir_json</code> payloads.</div>
+              <div><strong>Verification:</strong> Verified via authenticated curl execution against live platform gateway endpoints.</div>
             </div>
           </div>
 
@@ -115,4 +115,3 @@ export default function ChangelogPage() {
     </DocsLayout>
   );
 }
-

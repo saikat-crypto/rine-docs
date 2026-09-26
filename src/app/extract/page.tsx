@@ -46,7 +46,7 @@ export default function ExtractPage() {
           method="POST"
           path="/extract"
           purpose="Accepts a CAD file (.dwg, .dxf, .dwt) and parses it into structured LAVINCI_CAD_IR_V3 with telemetry and warnings."
-          authentication="None (Direct Engine) / Bearer Token (Platform Gateway)"
+          authentication="Bearer API Key (rine_live_...)"
           acceptedMedia="multipart/form-data"
           responseMedia="application/json"
           statusBadge="preview"
@@ -79,6 +79,7 @@ export default function ExtractPage() {
           language="bash"
           filename="EXTRACT_SAMPLE.SH"
           code={`curl -X POST "https://platform.rine.studio/api/v1/extract" \\
+     -H "Authorization: Bearer rine_live_your_api_key_here" \\
      -F "file=@sample_floorplan.dwg"`}
         />
 

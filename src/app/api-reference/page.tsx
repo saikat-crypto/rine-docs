@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import DocsLayout from '@/components/DocsLayout';
 import Badge from '@/components/Badge';
-import { ExternalLink, ArrowRight, Activity, FileCode2, RefreshCw, FileJson } from 'lucide-react';
+import { ExternalLink, ArrowRight } from 'lucide-react';
 
 export const metadata = {
   title: 'API reference',
@@ -124,28 +124,28 @@ export default function ApiReferenceLandingPage() {
           </div>
         </div>
 
-        <h2 id="live-swagger-reference">Live Swagger reference</h2>
+        <h2 id="interactive-console">Interactive testing in Developer Console</h2>
 
         <p>
-          The hosted Developer Preview exposes Swagger documentation at <code>/docs</code>.
+          Developers can evaluate endpoints interactively using the hosted Playground in the Developer Console.
         </p>
 
         <div className="my-6 p-6 rounded-2xl border border-white/10 bg-[#161616] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="space-y-1">
             <h3 className="text-sm font-medium text-white !mt-0">
-              Interactive OpenAPI 3.1.0 Playground
+              Platform Console Playground
             </h3>
             <p className="text-xs text-white/60 font-light">
-              Inspect the canonical machine-readable schema definition running live at <code>https://platform.rine.studio/api/v1/docs</code>.
+              Upload real CAD files, test format conversions, generate API keys, and review live execution telemetry.
             </p>
           </div>
           <a
-            href="https://platform.rine.studio/api/v1/docs"
+            href="https://platform.rine.studio"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-white text-xs font-medium transition-colors shrink-0 font-mono"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-white text-xs font-medium transition-colors shrink-0"
           >
-            <span>Open live Swagger</span>
+            <span>Open Playground</span>
             <ExternalLink className="w-3.5 h-3.5 text-white/60" />
           </a>
         </div>
@@ -177,4 +177,3 @@ export default function ApiReferenceLandingPage() {
     </DocsLayout>
   );
 }
-

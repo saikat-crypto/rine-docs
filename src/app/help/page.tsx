@@ -76,21 +76,29 @@ export default function HelpAndFeedbackPage() {
             <tbody>
               <tr>
                 <td className="font-medium text-white">General Technical Support</td>
-                <td className="font-mono text-white/80">hello@rine.studio</td>
+                <td className="font-mono text-white/80">
+                  <a href="mailto:hello@rine.studio" className="underline text-white">
+                    hello@rine.studio
+                  </a>
+                </td>
                 <td>General questions, account assistance, and early access inquiries.</td>
               </tr>
               <tr>
                 <td className="font-medium text-white">Platform Console Feedback</td>
                 <td className="font-mono text-white/80">
-                  <a href="https://platform.rine.studio/dashboard/feedback" target="_blank" rel="noopener noreferrer" className="underline text-white">
-                    platform.rine.studio/dashboard/feedback
+                  <a href="https://platform.rine.studio" target="_blank" rel="noopener noreferrer" className="underline text-white">
+                    platform.rine.studio
                   </a>
                 </td>
-                <td>Authenticated issue tracking, request correlation, and console feedback.</td>
+                <td>In-app feedback modal on every request log in the Developer Console.</td>
               </tr>
               <tr>
                 <td className="font-medium text-white">Security Disclosures</td>
-                <td className="font-mono text-white/80">security@rine.studio</td>
+                <td className="font-mono text-white/80">
+                  <a href="mailto:security@rine.studio" className="underline text-white">
+                    security@rine.studio
+                  </a>
+                </td>
                 <td>Sensitive vulnerability reports and responsible disclosure communications.</td>
               </tr>
             </tbody>
